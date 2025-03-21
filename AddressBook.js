@@ -108,7 +108,7 @@ class AddressBook {
 try {
     let addressBook = new AddressBook();
 
-    let contact1 = new Contact("Nikhil", "Kumar", "BHEL Jhansi", "Jhansi", "UP", "284120", "9876543210", "nikhil.kumar@gmail.com");
+    let contact1 = new Contact("Mudit", "Jadon", "BHEL Jhansi", "Jhansi", "UP", "284120", "9876543210", "mudit.kumar@gmail.com");
     let contact2 = new Contact("Amit", "Sharma", "Delhi NCR", "Delhi", "DL", "110001", "9123456789", "amit.sharma@gmail.com");
 
     addressBook.addContact(contact1);
@@ -118,7 +118,7 @@ try {
     addressBook.displayContacts();
 
     // Edit contact
-    addressBook.editContact("Nikhil Kumar", { phoneNumber: "9999999999", city: "Kanpur" });
+    addressBook.editContact("Mudit", { phoneNumber: "9999999999", city: "Kanpur" });
 
     console.log("After Editing:");
     addressBook.displayContacts();
