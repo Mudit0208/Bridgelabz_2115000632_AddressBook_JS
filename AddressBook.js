@@ -83,16 +83,54 @@ class AddressBook {
         }
 
         // Updating fields if provided in updatedDetails
-        if (updatedDetails.firstName) contact.validateName(updatedDetails.firstName, "First Name"), contact.firstName = updatedDetails.firstName;
-        if (updatedDetails.lastName) contact.validateName(updatedDetails.lastName, "Last Name"), contact.lastName = updatedDetails.lastName;
-        if (updatedDetails.address) contact.validateAddress(updatedDetails.address, "Address"), contact.address = updatedDetails.address;
-        if (updatedDetails.city) contact.validateAddress(updatedDetails.city, "City"), contact.city = updatedDetails.city;
-        if (updatedDetails.state) contact.validateAddress(updatedDetails.state, "State"), contact.state = updatedDetails.state;
-        if (updatedDetails.zip) contact.validateZip(updatedDetails.zip), contact.zip = updatedDetails.zip;
-        if (updatedDetails.phoneNumber) contact.validatePhoneNumber(updatedDetails.phoneNumber), contact.phoneNumber = updatedDetails.phoneNumber;
-        if (updatedDetails.email) contact.validateEmail(updatedDetails.email), contact.email = updatedDetails.email;
+        if (updatedDetails.firstName) {
+            contact.validateName(updatedDetails.firstName, "First Name");
+            contact.firstName = updatedDetails.firstName;
+        }
+        if (updatedDetails.lastName) {
+            contact.validateName(updatedDetails.lastName, "Last Name");
+            contact.lastName = updatedDetails.lastName;
+        }
+        if (updatedDetails.address) {
+            contact.validateAddress(updatedDetails.address, "Address");
+            contact.address = updatedDetails.address;
+        }
+        if (updatedDetails.city) {
+            contact.validateAddress(updatedDetails.city, "City");
+            contact.city = updatedDetails.city;
+        }
+        if (updatedDetails.state) {
+            contact.validateAddress(updatedDetails.state, "State");
+            contact.state = updatedDetails.state;
+        }
+        if (updatedDetails.zip) {
+            contact.validateZip(updatedDetails.zip);
+            contact.zip = updatedDetails.zip;
+        }
+        if (updatedDetails.phoneNumber) {
+            contact.validatePhoneNumber(updatedDetails.phoneNumber);
+            contact.phoneNumber = updatedDetails.phoneNumber;
+        }
+        if (updatedDetails.email) {
+            contact.validateEmail(updatedDetails.email);
+            contact.email = updatedDetails.email;
+        }
 
         console.log("Contact updated successfully.");
+    }
+
+    deleteContact(name) {
+        let index = this.contacts.findIndex(contact => `${contact.firstName} ${contact.lastName}`.toLowerCase() === name.toLowerCase());
+        if (index === -1) {
+            console.log("Contact not found.");
+            return;
+        }
+        this.contacts.splice(index, 1);
+        console.log("Contact deleted successfully.");
+    }
+
+    getContactCount() {
+        return this.contacts.length;
     }
 
     displayContacts() {
@@ -108,20 +146,22 @@ class AddressBook {
 try {
     let addressBook = new AddressBook();
 
-    let contact1 = new Contact("Mudit", "Jadon", "BHEL Jhansi", "Jhansi", "UP", "284120", "9876543210", "mudit.kumar@gmail.com");
+    let contact1 = new Contact("Mudit", "Jadon", "BHEL Jhansi", "Jhansi", "UP", "284120", "9876543210", "mudit.jadon@gmail.com");
     let contact2 = new Contact("Amit", "Sharma", "Delhi NCR", "Delhi", "DL", "110001", "9123456789", "amit.sharma@gmail.com");
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
 
-    console.log("Before Editing:");
+    console.log("Before Deleting:");
     addressBook.displayContacts();
+    console.log(`Total Contacts: ${addressBook.getContactCount()}`);
 
-    // Edit contact
-    addressBook.editContact("Mudit", { phoneNumber: "9999999999", city: "Kanpur" });
+    // Delete contact
+    addressBook.deleteContact("Mudit Jadon");
 
-    console.log("After Editing:");
+    console.log("After Deleting:");
     addressBook.displayContacts();
+    console.log(`Total Contacts: ${addressBook.getContactCount()}`);
 
 } catch (error) {
     console.error(error.message);
